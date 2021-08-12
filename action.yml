@@ -1,0 +1,17 @@
+name: terraform-upload-plan
+description: Parses and uploads the result of `terraform plan`.
+author: DREST LTD
+inputs:
+  name:
+    description: The name of the artifact to create.
+    required: false
+    default: terraform-plan
+  module:
+    description: The name of the Terraform module.
+    required: true
+  plan:
+    description: The output of `terraform plan`.
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
