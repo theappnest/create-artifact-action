@@ -123,7 +123,7 @@ const artifact_1 = __nccwpck_require__(2605);
 function uploadPlan(name, module, plan) {
     return __awaiter(this, void 0, void 0, function* () {
         const dir = fs_1.mkdtempSync(`${os_1.tmpdir()}${path_1.sep}`);
-        const filename = path_1.join(dir, module);
+        const filename = path_1.join(dir, `${module}.txt`);
         fs_1.mkdirSync(path_1.dirname(filename), { recursive: true });
         fs_1.writeFileSync(filename, plan);
         const artifactClient = artifact_1.create();
