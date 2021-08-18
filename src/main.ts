@@ -1,18 +1,13 @@
 import * as core from '@actions/core'
-import { context } from '@actions/github'
-import { parsePlan } from './parsePlan'
-import { uploadPlan } from './upload'
+import { upload } from './upload'
 
 async function run(): Promise<void> {
-  if (!context.payload.pull_request) {
-    return
-  }
   try {
     const name = core.getInput('name', { required: true })
-    const module = core.getInput('module', { required: true })
-    const plan = core.getInput('plan', { required: true })
+    const path = core.getInput('path', { required: true })
+    const content = core.getInput('content', { required: true })
 
-    await uploadPlan(name, module, parsePlan(plan))
+    await upload(name, path, content)
   } catch (error) {
     core.setFailed(error.message)
   }
