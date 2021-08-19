@@ -3,15 +3,15 @@ import { tmpdir } from 'os'
 import { dirname, join, sep } from 'path'
 import { create } from '@actions/artifact'
 
-export async function uploadPlan(
+export async function upload(
   name: string,
-  module: string,
-  plan: string,
+  path: string,
+  content: string,
 ): Promise<void> {
   const dir = mkdtempSync(`${tmpdir()}${sep}`)
-  const filename = join(dir, `${module}.txt`)
+  const filename = join(dir, path)
   mkdirSync(dirname(filename), { recursive: true })
-  writeFileSync(filename, plan)
+  writeFileSync(filename, content)
 
   const artifactClient = create()
   const uploadResponse = await artifactClient.uploadArtifact(

@@ -1,16 +1,16 @@
-name: terraform-upload-plan
-description: Parses and uploads the result of `terraform plan`.
+name: Create Artifact
+description: Creates a file from a variable and uploads it to an artifact.
 author: DREST LTD
 inputs:
   name:
     description: The name of the artifact to create.
+    default: artifact
     required: false
-    default: terraform-plan
-  module:
-    description: The name of the Terraform module.
+  path:
+    description: The path of the created file.
     required: true
-  plan:
-    description: The output of `terraform plan`.
+  content:
+    description: The contents of the created file.
     required: true
 runs:
   using: 'node12'
